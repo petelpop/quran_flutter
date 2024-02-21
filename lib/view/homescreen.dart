@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quran/view/tabs/hijb_tabs.dart';
+import 'package:quran/view/tabs/page_tabs.dart';
+import 'package:quran/view/tabs/para_tabs.dart';
+import 'package:quran/view/tabs/surah_tabs.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -28,7 +32,7 @@ class Homescreen extends StatelessWidget {
                 )
               ], 
                   body: TabBarView(
-                  children: []
+                  children: [SurahTab(), HijbTab(), PageTab(), ParaTab()]
                   )
                 ),
                 )  
