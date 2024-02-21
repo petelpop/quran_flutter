@@ -19,16 +19,44 @@ class Homescreen extends StatelessWidget {
                 ),
                 SliverAppBar(
                   automaticallyImplyLeading: false,
+                  pinned: true,
+                  elevation: 0,
+                  shape: Border(bottom: BorderSide(
+                    color: const Color(0xFFAAAAAA).withOpacity(0.1),
+                  )),
+                  bottom: PreferredSize(preferredSize: Size.fromHeight(0), child: _tab()),
                 )
               ], 
-              body: TabBarView(
-                children: []
-                )
+                  body: TabBarView(
+                  children: []
+                  )
                 ),
                 )  
                 ),
     );
   }
+
+  TabBar _tab() => TabBar(
+    labelColor: Colors.purple,
+    indicatorColor: Colors.purple,
+    indicatorWeight: 3,
+    tabs: [
+      _tabItem('surah'),
+      _tabItem('Hijb'),
+      _tabItem('Page'),
+      _tabItem('Para')
+    ],
+  );
+
+  Tab _tabItem(String label) => Tab(
+    child: Text(
+      label,
+      style: GoogleFonts.poppins(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  );
 
   Column _salam() => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
