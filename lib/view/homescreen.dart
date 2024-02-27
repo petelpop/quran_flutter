@@ -30,7 +30,7 @@ class Homescreen extends StatelessWidget {
                   )),
                   bottom: PreferredSize(preferredSize: Size.fromHeight(0), child: _tab()),
                 )
-              ], 
+                ], 
                   body: TabBarView(
                   children: [SurahTab(), HijbTab(), PageTab(), ParaTab()]
                   )

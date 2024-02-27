@@ -32,38 +32,43 @@ class Surah {
       nomor: json['nomor'],
       nama: json['nama'],
       namaLatin: json['nama_latin'],
-      jumlahAyah: json['jumlah_ayah'],
+      jumlahAyah: json['jumlah_ayat'],
       tempatTurun: json['tempat_turun'],
       arti: json['arti'],
       deskripsi: json['deskripsi'],
       audio: json['audio']);
 
-  //
-  Map<String, dynamic> toJson() => {
-        'nomor': nomor,
-        'nama': nama,
-        'nama_latin': namaLatin,
-        'jumlah_ayah': jumlahAyah,
-        'tempat_turun': tempatTurun,
-        'arti': arti,
-        'deskripsi': deskripsi,
-        'audio': audio
-      };
-}
+//     //
+//     Map<String, dynamic> toJson() => {
+//       'nomor': nomor,
+//       'nama': nama,
+//       'nama_latin' : namaLatin,
+//       'jumlah_ayah': jumlahAyah,
+//       'tempat_turun': tempatTurun,
+//       'arti': arti,
+//       'deskripsi' : deskripsi,
+//       'audio' : audio
+//     };
+// }
 
-enum tempatTurun { MADINAH, MAKKAH }
+// enum tempatTurun {
+//   MADINAH,
+//   MAKKAH
+// }
 
-final tempatTurunValue =
-    EnumValues({'madinah': tempatTurun.MADINAH, 'makkah': tempatTurun.MAKKAH});
+// final tempatTurunValue = EnumValues({
+//   'madinah' : tempatTurun.MADINAH,
+//   'makkah' : tempatTurun.MAKKAH
+// });
 
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
+// class EnumValues<T> {
+//   Map<String, T> map;
+//   late Map<T, String> reverseMap;
 
-  EnumValues(this.map);
+//   EnumValues(this.map);
 
-  Map<T, String> get reverse {
-    reverseMap = map.map((key, value) => MapEntry(value, key));
-    return reverseMap;
-  }
+//   Map<T, String> get reverse {
+//     reverseMap = map.map((key, value) => MapEntry(value, key));
+//     return reverseMap;
+//   }
 }
