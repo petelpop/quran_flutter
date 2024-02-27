@@ -38,7 +38,7 @@ class SurahTab extends StatelessWidget {
           behavior: HitTestBehavior.opaque,
           onTap: () {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: ((context) => DetailScreen())));
+                MaterialPageRoute(builder: ((context) => const DetailScreen())));
           },
           child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
@@ -77,23 +77,23 @@ class SurahTab extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(surah.tempatTurun.toString().toUpperCase(),
                             style: GoogleFonts.poppins(
-                                color: Color(0xFF8789A3),
+                                color: const Color(0xFF8789A3),
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12)),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         SvgPicture.asset('assets/svg/dot.svg'),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
                           surah.jumlahAyah.toString(),
                           style: GoogleFonts.poppins(
-                              color: Color(0xFF8789A3),
+                              color: const Color(0xFF8789A3),
                               fontWeight: FontWeight.w500,
                               fontSize: 12),
                         )
                       ],
                     ),
                   ),
-                  Text(surah.nama,
+                  Text(surah.nama.toString(),
                       style: GoogleFonts.poppins(
                           color: Colors.black,
                           fontSize: 20,
