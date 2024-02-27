@@ -22,7 +22,9 @@ class DetailScreen extends StatelessWidget {
       builder: ((context,snapshot) {
         // init data from response to model
         if(!snapshot.hasData){
-          return Container();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
         }
         Surah surah = snapshot.data!;
         return Scaffold(
