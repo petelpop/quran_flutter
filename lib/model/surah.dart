@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:quran/model/ayah.dart';
 
 List<Surah> surahFromJson(String str) =>
     List<Surah>.from(json.decode(str).map((x) => Surah.fromJson(x)));
@@ -12,6 +13,7 @@ class Surah {
   String arti;
   String deskripsi;
   String audio;
+  List<Ayat>? ayat;
 
   Surah({
     required this.nomor,
@@ -22,6 +24,7 @@ class Surah {
     required this.arti,
     required this.deskripsi,
     required this.audio,
+    this.ayat
   });
 
   // GET data from JSON to class surah
@@ -36,7 +39,9 @@ class Surah {
       tempatTurun: json['tempat_turun'],
       arti: json['arti'],
       deskripsi: json['deskripsi'],
-      audio: json['audio']);
+      audio: json['audio'],
+      ayat: json.containsKey('ayat')?
+      List<Ayat>.from(json['ayat']!.map((x) => Ayat.fromJson(x))) : null);
 
 //     //
 //     Map<String, dynamic> toJson() => {
