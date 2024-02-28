@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quran/model/surah.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -22,7 +23,7 @@ class DetailScreen extends StatelessWidget {
       builder: ((context,snapshot) {
         // init data from response to model
         if(!snapshot.hasData){
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
         }
@@ -40,7 +41,7 @@ class DetailScreen extends StatelessWidget {
   }
 
   Padding _detail({required BuildContext context, required Surah surah}) => Padding(
-    padding: EdgeInsets.symmetric(horizontal: 24),
+    padding: const EdgeInsets.symmetric(horizontal: 24),
     child: Stack(
       children: [
         Text(surah.namaLatin.toString())
@@ -49,9 +50,28 @@ class DetailScreen extends StatelessWidget {
   );
 
   AppBar _appBar({required BuildContext context, required Surah surah}) => AppBar(
-    title: Text(surah.namaLatin.toString()),
-    leading: IconButton(onPressed: (){
-      Navigator.pop(context);
-    }, icon: SvgPicture.asset('assets/svg/back_icon.svg')),
+    backgroundColor: Colors.white,
+    elevation: 0,
+    // hide the back button
+    automaticallyImplyLeading: false,
+    title: Row(
+      children: [
+        IconButton(
+          // to make a button back to the prev page when pressed
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: SvgPicture.asset('assets/svg/back_icon.svg')),
+          const SizedBox(width: 24),
+          Text(
+            surah.namaLatin.toString(),
+            style: GoogleFonts.poppins(
+              color: const Color(0xFF672CBC),
+              fontSize: 20,
+              fontWeight: FontWeight.bold
+            ),
+          )
+      ],
+    ),
   );
 }
