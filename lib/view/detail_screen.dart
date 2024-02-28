@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quran/model/ayah.dart';
 import 'package:quran/model/surah.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -37,10 +38,105 @@ class DetailScreen extends StatelessWidget {
                         child: _detailBanner(context: context, surah: surah),
                       )
                     ]),
-                body: Container()),
+                body: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: ListView.separated(
+                    itemBuilder: (context, index) => _ayatItem(
+                    // the condition to getting the data based on their index
+                    ayat: surah.ayat!.elementAt(index + (nomorSurah == 1 ? 1 : 0))
+                  ), 
+                  separatorBuilder: (context, index) => Container(), 
+                  // the condition to check the amount of total ayat that want to be shown
+                  itemCount: surah.jumlahAyah + (nomorSurah == 1 ? -1 : 0)),
+                )),
           );
         }));
   }
+
+  Padding _ayatItem({required Ayat ayat}) => Padding(
+    padding: const EdgeInsets.only(top: 24),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF863ED5),
+                Color(0xFFFFFFFF)
+              ]
+            )
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 27,
+                height: 27,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF863ED5),
+                  borderRadius: BorderRadius.circular(13.5)
+                ),
+                child: Center(
+                  child: Text(
+                    ayat.nomor.toString(),
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500
+                    )
+                  ),
+                ),
+              ),
+              const Spacer(),
+              IconButton(
+                iconSize: 24,
+              onPressed: () {}, 
+              icon: const Icon(
+                Icons.share_sharp,
+                color: Color(0xFF863ED5),
+              )
+              ),
+              IconButton(
+                iconSize: 24,
+                onPressed: (){}, 
+                icon: const Icon(Icons.play_arrow_sharp),
+                color: const Color(0xFF863ED5)
+                ),
+                IconButton(
+                  iconSize: 24,
+                  onPressed: (){},
+                  icon: const Icon(Icons.bookmark_sharp),
+                  color: const Color(0xFF863ED5),
+                  ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 24),
+        Text(
+          ayat.ar.toString(),
+          style: GoogleFonts.amiri(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: const Color(0xFF240F4F)
+          ),
+          textAlign: TextAlign.right,
+        ),
+        const SizedBox(height: 24),
+        Text(
+          ayat.idn.toString(),
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            color: const Color(0xFF240F4F)
+          ),
+        )
+      ],
+    ),
+  );
 
   Padding _detailBanner(
           {required BuildContext context, required Surah surah}) =>
